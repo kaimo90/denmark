@@ -1,0 +1,54 @@
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+from sklearn.cluster import KMeans
+import pandas as pd
+import matplotlib.pyplot as plt
+
+-- Read the file and see the columns
+df2=pd.read_csv("/content/drive/My Drive/Adsa/data_test_clustering_A1.csv")
+df2
+
+
+-- Select clusters index based on questions
+df_selected_cluster=df2.iloc[42482:43476,:]
+df_selected_cluster
+
+
+
+--Select n features according to the questions
+pca = PCA(n_components=2)
+pca_result = pca.fit_transform(df_selected_cluster)
+
+pca_df = pd.DataFrame(data=pca_result, columns=['PC1', 'PC2'])
+
+-- Plot the graph and count the clusters
+plt.figure(figsize=(10, 6))
+plt.scatter(pca_df['PC1'], pca_df['PC2'], alpha=0.5)
+plt.title('2D PCA Visualization')
+plt.xlabel('Principal Component 1 (PC1)')
+plt.ylabel('Principal Component 2 (PC2)')
+plt.grid(True)
+plt.show()
+
+-- Select two random index and solves Kmeans
+from sklearn.cluster import KMeans
+from scipy.spatial.distance import euclidean
+index_11=pca_result[11]
+index_832=pca_result[832]
+
+most_sig_11=index_11[0]
+second_sig_832=index_832[1]
+
+distance=euclidean(index_11,index_832)
+
+kmeans=KMeans(n_clusters=4,random_state=0)
+kmeans.fit(pca_result)
+labels=kmeans.labels_
+
+cluster_label_11=labels[11]
+cluster_label_832=labels[832]
+print(round(most_sig_11,3))
+print(round(second_sig_832,3))
+print(round(distance,3))
+print(cluster_label_11)
+print(cluster_label_832)
