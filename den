@@ -4,13 +4,13 @@ from sklearn.cluster import KMeans
 import pandas as pd
 import matplotlib.pyplot as plt
 
--- Read the file and see the columns
-df2=pd.read_csv("/content/drive/My Drive/Adsa/data_test_clustering_A1.csv")
+
+
 df2
 
 
 -- Select clusters index based on questions
-df_selected_cluster=df2.iloc[42482:43476,:]
+df_selected_cluster=df2.iloc[42482:43476,1:]
 df_selected_cluster
 
 
