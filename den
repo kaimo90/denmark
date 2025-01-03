@@ -1,8 +1,8 @@
-from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 from sklearn.cluster import KMeans
 import pandas as pd
 import matplotlib.pyplot as plt
+from scipy.spatial.distance import euclidean
 
 
 
@@ -30,9 +30,7 @@ plt.ylabel('Principal Component 2 (PC2)')
 plt.grid(True)
 plt.show()
 
--- Select two random index and solves Kmeans
-from sklearn.cluster import KMeans
-from scipy.spatial.distance import euclidean
+
 index_11=pca_result[11]
 index_832=pca_result[832]
 
